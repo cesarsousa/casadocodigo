@@ -34,10 +34,11 @@ public class AdminBooksBean {
 	}
 	
 	@Transactional
-	public void save() {
+	public String save() {
 		populateBookAuthor();
 		bookDAO.save(product);
 		clearObjects();
+		return "/livro/lista?faces-redirect=true";
 	}
 	
 	private void populateBookAuthor() {

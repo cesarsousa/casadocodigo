@@ -25,8 +25,15 @@ public class AdminBooksBean {
 	
 	@Transactional
 	public void save() {
+		populateBookAuthor();
 		bookDAO.save(product);
 	}
+	
+	private void populateBookAuthor() {
+		selectedAuthorsIds.stream().map( (id) -> {
+		return new Author(id);
+		}).forEach(product :: add);
+		}
 	
 	public Book getProduct() {
 		return product;

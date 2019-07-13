@@ -24,7 +24,7 @@ xmlns:jsf="http://xmlns.jcp.org/jsf">
 		<div>
 			<h:outputLabel>Autores</h:outputLabel>
 			<h:selectManyListbox
-				value="#{adminBooksBean.selectedAuthorsIds}">
+				value="#{adminBooksBean.selectedAuthorsIds}" converter="javax.faces.Integer">
 				<f:selectItems
 					value="#{adminBooksBean.authors}"
 					var="author"

@@ -2,6 +2,7 @@ package br.com.casadocodigo.loja.managedbeans;
 
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 import br.com.casadocodigo.loja.daos.BookDAO;
 import br.com.casadocodigo.loja.models.Book;
@@ -14,6 +15,7 @@ public class AdminBooksBean {
 	@Inject
 	private BookDAO bookDAO;
 	
+	@Transactional
 	public void save() {
 		bookDAO.save(product);
 	}

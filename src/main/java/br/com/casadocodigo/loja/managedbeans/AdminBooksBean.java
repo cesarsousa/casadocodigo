@@ -36,8 +36,16 @@ public class AdminBooksBean {
 		return selectedAuthorsIds;
 	}
 	
+	public void setSelectedAuthorsIds(List<Integer> selectedAuthorsIds) {
+		this.selectedAuthorsIds = selectedAuthorsIds;
+	}
+	
 	public List<Author> getAuthors() {
 		return authors;
+	}
+	
+	public void setAuthors(List<Author> authors) {
+		this.authors = authors;
 	}
 
 }

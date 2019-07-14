@@ -5,11 +5,13 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
+import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import br.com.casadocodigo.loja.daos.AuthorDAO;
 import br.com.casadocodigo.loja.daos.BookDAO;
+import br.com.casadocodigo.loja.infra.MessagesHelper;
 import br.com.casadocodigo.loja.models.Author;
 import br.com.casadocodigo.loja.models.Book;
 
@@ -27,6 +29,9 @@ public class AdminBooksBean {
 	
 	@Inject
 	private AuthorDAO authorDAO;
+
+	@Inject
+	private MessagesHelper messagesHelper;
 	
 	@PostConstruct
 	public void loadObjects(){
@@ -37,7 +42,9 @@ public class AdminBooksBean {
 	public String save() {
 		populateBookAuthor();
 		bookDAO.save(product);
-		clearObjects();
+		
+		messagesHelper.addFlash(new FacesMessage("Livro gravado com sucesso"));
+		
 		return "/livro/lista?faces-redirect=true";
 	}
 	
@@ -45,12 +52,6 @@ public class AdminBooksBean {
 		selectedAuthorsIds.stream().map( (id) -> {
 		return new Author(id);
 		}).forEach(product :: add);
-	}
-	
-	private void clearObjects() {
-		this.product = new Book();
-		this.selectedAuthorsIds.clear();
-		
 	}
 	
 	public Book getProduct() {

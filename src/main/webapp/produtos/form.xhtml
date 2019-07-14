@@ -1,34 +1,38 @@
 <html xmlns:h="http://java.sun.com/jsf/html" 
-xmlns:f="http://xmlns.jcp.org/jsf/core"
-xmlns:jsf="http://xmlns.jcp.org/jsf">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:body>
 	<h:form prependId="false">
 		<div>
+			<h:outputLabel>Data de lancamento</h:outputLabel>
+			<h:inputText
+				id="dataLancamento"
+				value="#{adminBooksBean.product.releaseDate}">
+				</h:inputText>
+			
+			<h:message for="dataLancamento"/>
+		</div>
+		<div>
 			<h:outputLabel>Titulo</h:outputLabel>
 			<h:inputText
 				id="titulo"
-				value="${adminBooksBean.product.title}"
-				required="true"/>
+				value="${adminBooksBean.product.title}"/>
 			<h:message for="titulo"/>
 		</div>
 		<div>
 			<h:outputLabel>Descricao</h:outputLabel>
 			<h:inputTextarea
 				id="descricao"
-				value="${adminBooksBean.product.description}"
-				cols="20"
-				rows="10"
-				required="true"/>
+				value="${adminBooksBean.product.description}"/>
 			<h:message for="descricao"/>
 		</div>
 		<div>
 			<h:outputLabel>Numero de paginas</h:outputLabel>
 			<h:inputText
 				id="numeroPaginas" 
-				value="${adminBooksBean.product.numberOfPages}"
-				required="true">
-				<f:validateLongRange minimum="80"/>
+				value="${adminBooksBean.product.numberOfPages}">
 			</h:inputText>
 			<h:message for="numeroPaginas"/>
 		</div>
@@ -36,9 +40,7 @@ xmlns:jsf="http://xmlns.jcp.org/jsf">
 			<h:outputLabel>Preco</h:outputLabel>
 			<h:inputText
 				id="preco"
-				value="${adminBooksBean.product.price}"
-				required="true">
-				<f:validateDoubleRange minimum="10" maximum="100"/>
+				value="${adminBooksBean.product.price}">
 			</h:inputText>
 			<h:message for="preco"/>
 		</div>
@@ -48,8 +50,7 @@ xmlns:jsf="http://xmlns.jcp.org/jsf">
 			<h:selectManyListbox
 				id="autores"
 				value="#{adminBooksBean.selectedAuthorsIds}" 
-				converter="javax.faces.Integer"
-				required="true">
+				converter="javax.faces.Integer">
 				<f:selectItems
 					value="#{adminBooksBean.authors}"
 					var="author"

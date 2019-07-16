@@ -1,0 +1,57 @@
+<html xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<f:metadata>
+	<f:viewParam id="id" name="id" value="#{productDetailBean.id}" />
+	<f:viewAction action="#{productDetailBean.loadBook()}" />
+</f:metadata>
+
+<head>
+<title>#{productDetailBean.book.title}</title>
+</head>
+
+<header>
+	<div id="product-overview" class="container">
+		<img width="280px" height="395px"
+			src="#{productDetailBean.book.coverPath}"
+			class="product-featured-image"
+			alt="#{productDetailtBean.book.description}" />
+		<h1 class="product-title">#{productDetailBean.book.title}</h1>
+		<p class="product-author">
+			<span class="product-author-link"> <ui:repeat var="author"
+					value="#{productDetailBean.book.authors}">
+#{author.name}|
+</ui:repeat>
+			</span>
+		</p>
+		<p class="book-description">#{productDetailBean.book.description}
+		</p>
+	</div>
+</header>
+
+<section class="author product-detail">
+	<h2 class="section-title">
+		<ui:repeat var="author" value="#{productDetailBean.book.authors}">
+#{author.name}|
+</ui:repeat>
+	</h2>
+	<span>
+		<p class="book-description">
+			<img class="author-image" src="" alt=""
+				style="float: left; margin-right: 10px;" /> <a>Descricao sobre
+				os autores</a>.
+		</p>
+	</span>
+</section>
+<section class="data product-detail">
+	<h2 class="section-title">Dados do livro:</h2>
+	<p>
+		Número de páginas: <span>
+			#{productDetailBean.book.numberOfPages} </span>
+	</p>
+	<p></p>
+
+	<p>Data de publicação: #{productDetailBean.book.releaseDate.time}</p>
+</html>

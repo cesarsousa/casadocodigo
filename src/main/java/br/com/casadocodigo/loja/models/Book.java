@@ -42,6 +42,9 @@ public class Book {
 	@NotNull
 	private String releaseDate;
 	
+	private String summaryPath;
+	private String coverPath;
+	
 	@ManyToMany
 	@Size(min = 1)
 	@NotNull
@@ -99,6 +102,22 @@ public class Book {
 
 	public void setAuthors(List<Author> authors) {
 		this.authors = authors;
+	}
+	
+	public String getSummaryPath() {
+		return summaryPath;
+	}
+	
+	public void setSummaryPath(String summaryPath) {
+		this.summaryPath = summaryPath;
+	}
+	
+	public String getCoverPath() {
+		return coverPath;
+	}
+	
+	public void setCoverPath(String coverPath) {
+		this.coverPath = coverPath;
 	}
 	
 	@Override

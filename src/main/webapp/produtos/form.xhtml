@@ -4,7 +4,7 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:body>
-	<h:form prependId="false">
+	<h:form prependId="false" enctype="multipart/form-data">
 		<div>
 			<h:outputLabel>Data de lancamento</h:outputLabel>
 			<h:inputText
@@ -58,6 +58,22 @@
 					itemValue="#{author.id}"/>
 			</h:selectManyListbox>
 			<h:message for="autores"/>
+		</div>
+		
+		<div>
+			<h:outputLabel value="Sumario"/>
+			<h:inputFile
+				id="summary"
+				value="#{adminBooksBean.summary}" 
+				label="Sumario do livro"/>
+		</div>
+		
+		<div>
+			<h:outputLabel value="Capa do livro"/>
+			<h:inputFile
+				id="cover"
+				value="#{adminBooksBean.cover}" 
+				label="Capa do livro"/>
 		</div>
 		
 		<h:commandButton value=" Gravar" action="${adminBooksBean.save}"/>

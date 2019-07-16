@@ -19,6 +19,18 @@
 				#{author.name}|
 				</ui:repeat>
 			</h:column>
+			<h:column>
+				<f:facet name="header">Sumario</f:facet>
+				<h:outputLink value="#{book.summaryPath}">
+					#{book.summaryPath}
+				</h:outputLink>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Capa do Livro</f:facet>
+				<h:outputLink value="#{book.coverPath}">
+					#{book.coverPath}
+				</h:outputLink>
+			</h:column>
 		</h:dataTable>
 	</h:body>
 </html>

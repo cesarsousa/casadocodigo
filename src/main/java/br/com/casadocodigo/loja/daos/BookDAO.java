@@ -2,18 +2,21 @@ package br.com.casadocodigo.loja.daos;
 
 import java.util.List;
 
-import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
 
 import br.com.casadocodigo.loja.models.Book;
 
-@Stateful
 public class BookDAO {
 
-	@PersistenceContext(type=PersistenceContextType.EXTENDED)
+	@PersistenceContext
 	private EntityManager manager;
+	
+	public BookDAO() {}
+	
+	public BookDAO(EntityManager manager) {
+		this.manager = manager;
+	}
 
 	public void save(Book product) {
 		manager.persist(product);

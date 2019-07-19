@@ -1,0 +1,62 @@
+<html xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<h:body>
+
+	<form accept-charset="UTF-8" jsf:prependId="false" class="section__formjs-shipping-address-with-selector"
+		jsf:id="checkoutUserForm" method="post">
+		
+		<div style="display: none"></div>
+		<div class="fieldset" data-email-check='#checkout_email_suggestion'>
+			<div class="field field--required">
+				<label for="checkout_email">E-mail</label>
+				<input autocapitalize="off" autocomplete="shipping email" jsf:id="email"
+					data-autofocus="true" jsf:value="#{checkoutBean.systemUser.email}"
+					placeholder="E-mail" size="30" spellcheck="false" type="email" />
+			</div>
+		</div>
+		
+		<h5>Endereço de entrega</h5>
+		<div class="fieldset" id="shipping-address" data-shipping-address="">
+			<div class="field field--optional">
+				<label for="checkout_shipping_address_first_name">Nome</label>
+				<input autocomplete="shipping given-name" jsf:id="name" jsf:value="#{checkoutBean.systemUser.firstName}"
+					placeholder="Nome" size="30" type="text" />
+			</div>
+			<div class="field field--required">
+				<label for="checkout_shipping_address_last_name">Sobrenome</label>
+				<input autocomplete="shipping family-name" jsf:id="lastName"
+					jsf:value="#{checkoutBean.systemUser.lastName}"
+					placeholder="Sobrenome" size="30" type="text" />
+			</div>
+
+			<div class="field field--required">
+				<label for="checkout_shipping_address_company">CPF/CNPJ</label>
+				<input autocomplete="shipping organization" jsf:id="socialId" jsf:value="#{checkoutBean.systemUser.socialId}"
+					placeholder="999.999.999-99" size="30" type="text" />
+			</div>
+
+			<div class="field field--required" data-country-section="1">
+				<label for="checkout_shipping_address_country">País</label>
+				<select jsf:value="#{checkoutBean.systemUser.country}" jsf:id="country" size="1">
+					<f:selectItem itemValue="" itemLabel="Escolha o país" />
+					<f:selectItem itemValue="Portugal" itemLabel="Portugal" />
+					<f:selectItem itemValue="Brasil" itemLabel="Brasil" />
+					<f:selectItem itemValue="Africa do Sul" itemLabel="Africa do Sul" />
+					<f:selectItem itemValue="Argentina" itemLabel="Argentina" />
+					<f:selectItem itemValue="Colombia" itemLabel="Colombia" />
+				</select>
+			</div>
+		</div>
+		
+		<div>
+			<input class="btn" name="commit" jsf:action="#{checkoutBean.checkout()}" type="submit" value="Continuar" />
+		</div>
+			
+	</form>
+</h:body>
+</html>

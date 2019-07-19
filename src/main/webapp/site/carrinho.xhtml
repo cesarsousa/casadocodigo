@@ -30,7 +30,9 @@ xmlns:jsf="http://xmlns.jcp.org/jsf">
 			<tfoot>
 				<tr>
 					<td colspan="3">
-						<input type="submit" class="checkout" name="checkout" value="Finalizar compra" id="checkout" /></td>
+						<a href="${request.contextPath}/site/checkout.xhtml"
+							id="checkout" class="checkout">Finalizar compra
+						</a></td>
 					<td class="quantity-input-cell">
 						<!-- <input type="submit" class="update-cart" name="update" value="" disabled="disabled"/> --></td>
 					<td class="numeric-cell">R$ #{shoppingCart.total}</td>

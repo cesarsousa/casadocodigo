@@ -3,7 +3,8 @@
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:jsf="http://xmlns.jcp.org/jsf">
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:o="http://omnifaces.org/ui">
 
 <h:body>
 
@@ -17,6 +18,12 @@
 				<input autocapitalize="off" autocomplete="shipping email" jsf:id="email"
 					data-autofocus="true" jsf:value="#{checkoutBean.systemUser.email}"
 					placeholder="E-mail" size="30" spellcheck="false" type="email" />
+					
+					<!-- <f:validateBean validationGroups="br.com.casadocodigo.loja.models.validation.groups.BuyerGroup"/> -->
+					
+					<o:messages for="email" var="message">
+						<p class="field_error-message">#{message.summary}</p>
+					</o:messages>
 			</div>
 		</div>
 		
@@ -26,23 +33,42 @@
 				<label for="checkout_shipping_address_first_name">Nome</label>
 				<input autocomplete="shipping given-name" jsf:id="name" jsf:value="#{checkoutBean.systemUser.firstName}"
 					placeholder="Nome" size="30" type="text" />
+					
+					<!-- <f:validateBean validationGroups="br.com.casadocodigo.loja.models.validation.groups.BuyerGroup"/> -->
+					
+					<o:messages for="name" var="message">
+						<p class="field_error-message">#{message.summary}</p>
+					</o:messages>
 			</div>
 			<div class="field field--required">
 				<label for="checkout_shipping_address_last_name">Sobrenome</label>
 				<input autocomplete="shipping family-name" jsf:id="lastName"
 					jsf:value="#{checkoutBean.systemUser.lastName}"
 					placeholder="Sobrenome" size="30" type="text" />
+					
+					<!-- <f:validateBean validationGroups="br.com.casadocodigo.loja.models.validation.groups.BuyerGroup"/> -->
+					
+					<o:messages for="lastName" var="message">
+						<p class="field_error-message">#{message.summary}</p>
+					</o:messages>
 			</div>
 
 			<div class="field field--required">
 				<label for="checkout_shipping_address_company">CPF/CNPJ</label>
 				<input autocomplete="shipping organization" jsf:id="socialId" jsf:value="#{checkoutBean.systemUser.socialId}"
 					placeholder="999.999.999-99" size="30" type="text" />
+					
+					<!-- <f:validateBean validationGroups="br.com.casadocodigo.loja.models.validation.groups.BuyerGroup"/> -->
+					
+					<o:messages for="socialId" var="message">
+						<p class="field_error-message">#{message.summary}</p>
+					</o:messages>
 			</div>
 
 			<div class="field field--required" data-country-section="1">
 				<label for="checkout_shipping_address_country">País</label>
 				<select jsf:value="#{checkoutBean.systemUser.country}" jsf:id="country" size="1">
+					<!-- <f:validateBean validationGroups="br.com.casadocodigo.loja.models.validation.groups.BuyerGroup"/> -->
 					<f:selectItem itemValue="" itemLabel="Escolha o país" />
 					<f:selectItem itemValue="Portugal" itemLabel="Portugal" />
 					<f:selectItem itemValue="Brasil" itemLabel="Brasil" />

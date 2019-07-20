@@ -16,5 +16,10 @@
 		<param-name>org.omnifaces.CACHE_SETTING_APPLICATION_TTL</param-name>
 		<param-value>900</param-value>
 	</context-param>
+	
+	<context-param>
+		<param-name>resteasy.media.type.mappings</param-name>
+		<param-value>json : application/json, xml : application/xml</param-value>
+	</context-param>
 
 </web-app>

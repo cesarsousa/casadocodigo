@@ -2,8 +2,6 @@ package br.com.casadocodigo.loja.resources;
 
 import java.math.BigDecimal;
 import java.net.URI;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import javax.annotation.Resource;
 import javax.enterprise.concurrent.ManagedExecutorService;

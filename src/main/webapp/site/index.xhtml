@@ -1,10 +1,13 @@
 <html xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui">
 
 <h:body>
-
+	
+	<o:cache scope="application">
+	<ul id="home-highlight-collection">
 	<ui:repeat var="book" value="#{homeBean.lastReleases()}">
 		<li class="col-left">
 			<a href="#{request.contextPath}/site/detalhe.xhtml?id=#{book.id}" class="block clearfix">
@@ -14,7 +17,11 @@
 			</a>
 		</li>
 	</ui:repeat>
-
+	</ul>
+	</o:cache>
+	
+	<o:cache scope="application">
+	<ul class="clearfix book-collection">
 	<ui:repeat var="book" value="#{homeBean.olderBooks()}">
 		<li>
 			<a href="#{request.contextPath}/site/detalhe.xhtml?id=#{book.id}" class="block clearfix">
@@ -24,6 +31,8 @@
 			</a>
 		</li>
 	</ui:repeat>
+	</ul>
+	</o:cache>
 
 </h:body>
 

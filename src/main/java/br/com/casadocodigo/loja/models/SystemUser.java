@@ -1,10 +1,15 @@
 package br.com.casadocodigo.loja.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 import org.hibernate.validator.constraints.Email;
 
@@ -38,6 +43,9 @@ public class SystemUser {
 	private String country;
 	
 	private String password;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	private List<SystemRole> roles = new ArrayList<>();
 
 	public SystemUser() {
 		super();
@@ -137,6 +145,14 @@ public class SystemUser {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public List<SystemRole> getRoles() {
+		return roles;
+	}
+	
+	public void setRoles(List<SystemRole> roles) {
+		this.roles = roles;
 	}
 	
 }

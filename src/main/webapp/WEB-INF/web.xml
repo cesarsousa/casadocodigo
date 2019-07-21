@@ -21,5 +21,30 @@
 		<param-name>resteasy.media.type.mappings</param-name>
 		<param-value>json : application/json, xml : application/xml</param-value>
 	</context-param>
+	
+	<login-config>		
+		<auth-method>FORM</auth-method>	
+		<form-login-config>
+			<form-login-page>/users/login.xhtml</form-login-page>
+			<form-error-page>/users/login.xhtml</form-error-page>		
+		</form-login-config>
+	</login-config>
+	
+	<security-constraint>
+		<display-name>Administracao</display-name>
+		<web-resource-collection>
+			<web-resource-name>administracao</web-resource-name>
+			<description>Urls que levam para paginas de administracao</description>
+			<url-pattern>/produtos/*</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>ADMIN</role-name>			
+		</auth-constraint>
+	</security-constraint>
+	<security-role>
+		<role-name>ADMIN</role-name>		
+	</security-role>
 
 </web-app>

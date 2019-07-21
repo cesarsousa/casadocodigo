@@ -6,6 +6,9 @@ import java.net.URI;
 import javax.annotation.Resource;
 import javax.enterprise.concurrent.ManagedExecutorService;
 import javax.inject.Inject;
+import javax.jms.Destination;
+import javax.jms.JMSContext;
+import javax.jms.JMSProducer;
 import javax.servlet.ServletContext;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -35,11 +38,20 @@ public class PaymentResource {
 	@Resource(name = "java:comp/DefaultManagedExecutorService")
 	private ManagedExecutorService managedExecutorService;
 	
+	@Inject
+	private JMSContext jmsContext;
+	
+	@Resource(lookup = "java:/jms/topics/checkoutsTopic")
+	private Destination checkoutsTopic;
+	
+	
 	@POST
 	public void pay(@Suspended final AsyncResponse ar, @QueryParam("uuid") String uuid) {
 		
 		String contextPath = ctx.getContextPath();
 		Checkout checkout = checkoutDAO.findByUuid(uuid);
+		
+		JMSProducer produce = jmsContext.createProducer();
 		
 		managedExecutorService.submit(() -> {
 			
@@ -48,8 +60,14 @@ public class PaymentResource {
 			try {
 						
 				paymentGateway.pay(total);
-						
-				URI redirectURI = UriBuilder.fromPath("http://localhost:8080" + contextPath + "/site/index.xhtml").queryParam("msg", "Compra realizada com sucesso").build();
+				
+				produce.send(checkoutsTopic, checkout.getUuid());
+				
+				URI redirectURI = UriBuilder
+						.fromPath("http://localhost:8080" + contextPath + "/site/index.xhtml")
+						.queryParam("msg", "Compra realizada com sucesso")
+						.build();
+				
 				Response response = Response.seeOther(redirectURI).build();
 						
 				ar.resume(response);

@@ -4,6 +4,11 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:body>
+
+<div>
+<p>Seja bem vindo, #{currentUser.get().email}</p>
+</div>
+
 	<h:form prependId="false" enctype="multipart/form-data">
 		<div>
 			<h:outputLabel>Data de lancamento</h:outputLabel>
